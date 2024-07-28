@@ -4,6 +4,7 @@ import type {
 	NextFunction as Next,
 } from "express";
 import { validationResult } from "express-validator";
+
 import { ResponseException } from "./response.exception";
 
 interface IRequestException { }
