@@ -21,6 +21,8 @@ authRouter.get("/refresh", AuthController.refresh);
 
 authRouter.put(
 	"/update",
+	authMiddleware,
+	AuthController.updateUserData
 );
 
 authRouter.delete(

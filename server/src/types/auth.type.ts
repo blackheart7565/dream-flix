@@ -1,4 +1,5 @@
-import type { DeleteResult } from "mongodb";
+import type { DeleteResult, UpdateResult } from "mongodb";
+import fileUpload from "express-fileupload";
 import { FingerprintResult } from "express-fingerprint";
 
 import type { IDtoUser, IUser } from "./user.type";
@@ -53,9 +54,12 @@ export interface IRefreshReturn extends IResponseReturn { }
 // 					Update
 // ================================================
 
-export interface IUpdateProps { }
+export interface IUpdateProps extends Pick<IUser, "username" | "email"> {
+	avatar: fileUpload.UploadedFile;
+	poster: fileUpload.UploadedFile;
+}
 
-export interface IUpdateReturn { }
+export interface IUpdateReturn extends UpdateResult { }
 
 // ================================================
 // 					Delete

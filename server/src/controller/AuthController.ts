@@ -3,6 +3,7 @@ import {
 	Response as Res,
 	NextFunction as Next,
 } from "express";
+import fileUpload from "express-fileupload";
 
 import CookieServices from "../services/CookieServices";
 import AuthServices from "../services/AuthServices";
@@ -12,7 +13,8 @@ import type { TError } from "../types/common";
 import type {
 	IRegistrationReturn,
 	ILoginReturn,
-	ILogoutReturn
+	ILogoutReturn,
+	IUpdateReturn
 } from "../types/auth.type";
 
 interface IAuthController { }
@@ -78,7 +80,7 @@ class AuthController implements IAuthController {
 			next(error);
 		}
 	}
-	
+
 	public async logout(req: Req, res: Res, next: Next): Promise<Res<ILogoutReturn> | void> {
 		try {
 			const { refreshToken } = req.cookies;
@@ -115,8 +117,25 @@ class AuthController implements IAuthController {
 		}
 	}
 
-	public async updateUserData(req: Req, res: Res, next: Next) {
+	public async updateUserData(req: Req, res: Res, next: Next): Promise<Res<IUpdateReturn> | void> {
+		try {
+			const { username, email } = req.body;
+			const { avatar, poster } = (req.files || {}) as fileUpload.FileArray;
 
+			const response = await AuthServices.updateUserData({
+				username,
+				email,
+				avatar: avatar as fileUpload.UploadedFile,
+				poster: poster as fileUpload.UploadedFile
+			});
+
+			return res.status(200).json({
+				message: "User data updated successfully!",
+				details: { ...response }
+			});
+		} catch (error: TError) {
+			next(error);
+		}
 	}
 
 	public async deleteUser(req: Req, res: Res, next: Next) {

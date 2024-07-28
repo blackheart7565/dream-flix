@@ -1,8 +1,10 @@
-
+import path from "path";
 import bcrypt from "bcrypt";
+import fileUpload from "express-fileupload";
 
 import userModule from "../modules/user.module";
 import TokenSessionRepositoryService from "./TokenSessionRepositoryService";
+import FilesServices from "./FilesServices";
 
 import { UserDto } from "../dto/user.dto";
 import { ResponseException } from "../exceptions/response.exception";
@@ -195,8 +197,37 @@ class AuthServices implements IAuthServices {
 		};
 	}
 
-	public async updateUserData({ }: IUpdateProps) {
+	public async updateUserData({
+		username,
+		email,
+		avatar,
+		poster
+	}: IUpdateProps): Promise<IUpdateReturn> {
+		const userExist = await userModule.findOne({ email });
+		if (!userExist) {
+			throw ResponseException.badRequest("User not found!");
+		}
 
+		if (avatar) {
+			const avatarPath: string = path.resolve(__dirname, "..", "static", userExist?.avatar as string);
+			await FilesServices.checkAndDeleteFile(avatarPath);
+		}
+
+		if (poster) {
+			const posterPath: string = path.resolve(__dirname, "..", "static", userExist?.poster as string);
+			await FilesServices.checkAndDeleteFile(posterPath);
+		}
+
+		const newAvatar = await FilesServices.move(avatar as fileUpload.UploadedFile);
+		const newPoster = await FilesServices.move(poster as fileUpload.UploadedFile);
+
+		const responseUpdated = await userExist?.updateOne({
+			username: username || userExist.username,
+			avatar: newAvatar,
+			poster: newPoster,
+		});
+
+		return responseUpdated;
 	}
 
 	public async deleteUser({ }: IDeleteProps) {
