@@ -1,14 +1,11 @@
 import type { TError } from "../types/common";
 import type {
+	IResponseData,
 	IResponseException
 } from "../types/response.type";
 
 
-interface IConstructorProps {
-	status: number;
-	message: string;
-	errors?: TError;
-}
+interface IConstructorProps extends IResponseData { }
 
 export class ResponseException implements IResponseException {
 	private _status: number;
