@@ -13,6 +13,9 @@ import type {
 	IMethodCreateSessionProps,
 	IMethodCreateSessionReturn,
 
+	IDeleteSessionProps,
+	IDeleteSessionReturn,
+
 	ICompareSessionByRefreshTokenProps,
 	ICompareSessionByRefreshTokenReturn,
 } from "../types/sessionToken.type";
@@ -62,6 +65,14 @@ class TokenSessionRepositoryService implements ITokenSessionRepositoryService {
 
 		return session ?? null;
 	}
+
+	async deleteSession({
+		refreshToken
+	}: IDeleteSessionProps): Promise<IDeleteSessionReturn> {
+		const session = await sessionTokenModule.deleteOne({ refresh_token: refreshToken });
+		return session;
+	};
+
 
 	async compareSessionTokenByRefreshToken({
 		refreshToken

@@ -1,4 +1,5 @@
 import type { FingerprintResult } from "express-fingerprint";
+import type { DeleteResult } from "mongodb";
 
 import type { ITokensReturn } from "./auth.type";
 import type {
@@ -33,3 +34,11 @@ export type ICompareSessionByUserIdAndFingerprintReturn = ISessionToken | null;
 
 export interface ICompareSessionByRefreshTokenProps extends Pick<ITokensReturn, "refreshToken"> {}
 export type ICompareSessionByRefreshTokenReturn = ISessionToken | null;
+
+// ================================================================================================
+// 						Delete Session Token By RefreshToken
+// ================================================================================================
+
+export interface IDeleteSessionProps extends Pick<ITokensReturn, "refreshToken"> { }
+
+export interface IDeleteSessionReturn extends DeleteResult { };
