@@ -15,3 +15,9 @@ export interface IUserScheme extends DocumentResult<IUser> {
 	avatar: string;
 	poster: string;
 }
+
+export interface ISessionToken {
+	userId: IObjectIdType;
+	refresh_token: string;
+	finger_print: string;
+}
