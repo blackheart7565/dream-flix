@@ -5,6 +5,7 @@ import fileUpload from "express-fileupload";
 import userModule from "../modules/user.module";
 import TokenSessionRepositoryService from "./TokenSessionRepositoryService";
 import FilesServices from "./FilesServices";
+import FavoriteServices from "./FavoriteServices";
 
 import { UserDto } from "../dto/user.dto";
 import { ResponseException } from "../exceptions/response.exception";
@@ -249,6 +250,8 @@ class AuthServices implements IAuthServices {
 			await FilesServices.checkAndDeleteFile(avatarPath),
 			await FilesServices.checkAndDeleteFile(posterPath)
 		]);
+
+		await FavoriteServices.deleteAll({ userId: userExists.id });
 
 		await TokenSessionRepositoryService.deleteSession({ refreshToken });
 
