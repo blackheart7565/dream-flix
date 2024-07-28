@@ -11,6 +11,7 @@ mediaRoute.get(
 
 mediaRoute.get(
 	"/details/:mediaId",
+	MediaController.mediaDetails
 );
 
 mediaRoute.get(
