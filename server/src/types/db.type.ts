@@ -21,3 +21,13 @@ export interface ISessionToken {
 	refresh_token: string;
 	finger_print: string;
 }
+
+export interface IFavoriteScheme {
+	userId: IObjectIdType,
+	mediaId: IObjectIdType,
+	mediaType: string,
+	mediaPosterPath: string,
+	mediaTitle: string,
+	mediaRating: number,
+	mediaReleaseDate: string,
+}
