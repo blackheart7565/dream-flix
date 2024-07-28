@@ -1,3 +1,4 @@
+/// <reference path="./declare.d.ts" />
 import "dotenv/config";
 
 import http from "http";
