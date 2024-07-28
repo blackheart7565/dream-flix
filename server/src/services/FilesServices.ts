@@ -6,8 +6,6 @@ import fileUpload from "express-fileupload";
 
 import DateServices from "./DateServices";
 
-import type { TError } from "../types/common";
-
 interface IFilesServices { }
 
 class FileServices implements IFilesServices {
