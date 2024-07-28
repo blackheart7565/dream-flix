@@ -1,10 +1,24 @@
+import { FingerprintResult } from "express-fingerprint";
+
+import type { IDtoUser, IUser } from "./user.type";
+
+export interface ITokensReturn {
+	accessToken: string;
+	refreshToken: string;
+}
+
+export interface IResponseReturn extends ITokensReturn {
+	user: IDtoUser;
+}
 
 // ================================================
 // 					Registration
 // ================================================
 
-export interface IRegistrationProps { }
-export interface IRegistrationReturn { }
+export interface IRegistrationProps extends IUser {
+	fingerprint: FingerprintResult;
+}
+export interface IRegistrationReturn extends IResponseReturn { }
 
 // ================================================
 // 					Login

@@ -1,9 +1,12 @@
 import express from "express";
 
+import AuthController from "../controller/AuthController";
+
 const authRouter = express.Router();
 
 authRouter.post(
 	"/registration",
+	AuthController.registration
 );
 
 authRouter.post(
