@@ -12,6 +12,7 @@ import Fingerprint from "./node_modules/express-fingerprint/lib/index";
 import router from "./src/routes";
 
 import { dbConnection } from "./src/db";
+import { errorMiddleware } from "./src/middleware/error.middleware";
 
 const app = express();
 const server = http.createServer(app);
@@ -34,6 +35,7 @@ app.use(Fingerprint({
 }));
 app.use(fileUpload({}));
 app.use("/api/v1", router);
+app.use(errorMiddleware);
 
 const PORT: number = parseInt(process.env.PORT as string);
 
