@@ -9,6 +9,8 @@ import path from "path";
 import bodyParser from "body-parser";
 import Fingerprint from "./node_modules/express-fingerprint/lib/index";
 
+import router from "./src/routes";
+
 import { dbConnection } from "./src/db";
 
 const app = express();
@@ -31,6 +33,7 @@ app.use(Fingerprint({
 	]
 }));
 app.use(fileUpload({}));
+app.use("/api/v1", router);
 
 const PORT: number = parseInt(process.env.PORT as string);
 
