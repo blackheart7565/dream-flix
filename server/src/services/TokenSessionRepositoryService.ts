@@ -40,6 +40,22 @@ class TokenSessionRepositoryService implements ITokenSessionRepositoryService {
 			refreshToken,
 		};
 	}
+	
+	validateRefreshToken(refreshToken: string): IDtoUser | null {
+		const refreshTokenSecretKey = process.env.TOKEN_REFRESH_SECRET as string;
+
+		const refreshTokenEquals = jwt.verify(refreshToken, refreshTokenSecretKey) as IDtoUser;
+
+		return refreshTokenEquals ?? null;
+	}
+
+	validateAccessToken(accessToken: string): IDtoUser | null {
+		const accessTokenSecretKey = process.env.TOKEN_ACCESS_SECRET as string;
+
+		const accessTokenEquals = jwt.verify(accessToken, accessTokenSecretKey) as IDtoUser;
+
+		return accessTokenEquals ?? null;
+	}
 
 	async create({
 		userId,
