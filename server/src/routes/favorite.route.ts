@@ -26,6 +26,8 @@ favoriteRoute.delete(
 
 favoriteRoute.delete(
 	"/",
+	authMiddleware,
+	FavoriteController.deleteAll
 );
 
 export default favoriteRoute;
