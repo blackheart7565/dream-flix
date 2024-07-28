@@ -47,7 +47,7 @@ class AuthController implements IAuthController {
 				accessToken,
 				refreshToken
 			});
-		} catch (error: any) {
+		} catch (error: TError) {
 			next(error);
 		}
 	}
@@ -77,7 +77,7 @@ class AuthController implements IAuthController {
 				accessToken,
 				refreshToken,
 			});
-		} catch (error: any) {
+		} catch (error: TError) {
 			next(error);
 		}
 	}

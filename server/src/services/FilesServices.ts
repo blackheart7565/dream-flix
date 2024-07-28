@@ -28,7 +28,7 @@ class FileServices implements IFilesServices {
 
 		try {
 			await fsPromise.unlink(pathFile);
-		} catch (error: TError) {
+		} catch {
 			return;
 		}
 	}
@@ -41,7 +41,7 @@ class FileServices implements IFilesServices {
 			if (!fileExists) return;
 
 			await this.deleteFile(pathFile);
-		} catch (error) {
+		} catch {
 			return;
 		}
 	}
@@ -78,7 +78,7 @@ class FileServices implements IFilesServices {
 		try {
 			const data: string[] = await fsPromise.readdir(pathFolder);
 			return data.length > 0;
-		} catch (error) {
+		} catch {
 			return false;
 		}
 	}
@@ -97,7 +97,7 @@ class FileServices implements IFilesServices {
 			if (folderExists) return;
 
 			await this.createFolder(pathFolder);
-		} catch (error) {
+		} catch {
 			return;
 		}
 	}

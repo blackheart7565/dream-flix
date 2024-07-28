@@ -46,9 +46,3 @@ dbConnection(() => {
 		console.log(`Server listen on http://localhost:${PORT}`);
 	});
 });
-
-
-
-
-
-
