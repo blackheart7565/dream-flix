@@ -9,6 +9,8 @@ import path from "path";
 import bodyParser from "body-parser";
 import Fingerprint from "./node_modules/express-fingerprint/lib/index";
 
+import { dbConnection } from "./src/db";
+
 const app = express();
 const server = http.createServer(app);
 
@@ -32,9 +34,12 @@ app.use(fileUpload({}));
 
 const PORT: number = parseInt(process.env.PORT as string);
 
-server.listen(PORT, () => {
-	console.log(`Server listen on http://localhost:${PORT}`);
+dbConnection(() => {
+	server.listen(PORT, () => {
+		console.log(`Server listen on http://localhost:${PORT}`);
+	});
 });
+
 
 
 
