@@ -93,8 +93,26 @@ class AuthController implements IAuthController {
 		}
 	}
 
-	public async refresh(req: Req, res: Res, next: Next) {
-		
+	public async refresh(req: Req, res: Res, next: Next): Promise<Res<ILogoutReturn> | void> {
+		try {
+			const { refreshToken } = req.cookies;
+			const { fingerprint } = req;
+
+			const refreshResult = await AuthServices.refresh({
+				refreshToken,
+				fingerprint: fingerprint!
+			});
+
+			CookieServices.saveCookieRefreshToken(res, refreshResult.refreshToken);
+
+			return res.status(200).json({
+				user: refreshResult.user,
+				accessToken: refreshResult.accessToken,
+				refreshToken: refreshResult.refreshToken,
+			});
+		} catch (error: TError) {
+			next(error);
+		}
 	}
 
 	public async updateUserData(req: Req, res: Res, next: Next) {

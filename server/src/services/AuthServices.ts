@@ -145,8 +145,54 @@ class AuthServices implements IAuthServices {
 		return session;
 	}
 
-	public async refresh({ }: IRefreshProps) {
+	public async refresh({
+		refreshToken,
+		fingerprint
+	}: IRefreshProps): Promise<IRefreshReturn> {
+		if (!refreshToken) {
+			throw ResponseException.unauthorized();
+		}
 
+		const validateRefreshToken = TokenSessionRepositoryService.validateRefreshToken(refreshToken);
+		const session = await TokenSessionRepositoryService.compareSessionTokenByRefreshToken({ refreshToken });
+
+		if (!validateRefreshToken || !session) {
+			throw ResponseException.unauthorized();
+		}
+
+		if (session.finger_print !== fingerprint.hash) {
+			throw ResponseException.forbidden();
+		}
+
+		await TokenSessionRepositoryService.deleteSession({ refreshToken });
+
+		const user = await userModule.findById(validateRefreshToken.id);
+
+		if (!user) {
+			throw ResponseException.badRequest("User is not found!");
+		}
+
+		const payload = new UserDto({
+			id: user.id,
+			username: user.username,
+			email: user.email,
+			avatar: user.avatar,
+			poster: user.poster
+		});
+
+		const tokens = TokenSessionRepositoryService.generateTokens({ ...payload });
+
+		await TokenSessionRepositoryService.create({
+			userId: user.id,
+			refreshToken: tokens.refreshToken,
+			fingerprint
+		});
+
+		return {
+			user: { ...payload },
+			accessToken: tokens.accessToken,
+			refreshToken: tokens.refreshToken,
+		};
 	}
 
 	public async updateUserData({ }: IUpdateProps) {

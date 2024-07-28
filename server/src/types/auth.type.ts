@@ -44,8 +44,10 @@ export interface ILogoutReturn extends DeleteResult { }
 // 					Refresh
 // ================================================
 
-export interface IRefreshProps { }
-export interface IRefreshReturn { }
+export interface IRefreshProps extends Pick<ITokensReturn, "refreshToken"> {
+	fingerprint: FingerprintResult;
+}
+export interface IRefreshReturn extends IResponseReturn { }
 
 // ================================================
 // 					Update

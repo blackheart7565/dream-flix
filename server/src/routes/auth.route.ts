@@ -17,7 +17,7 @@ authRouter.post(
 );
 
 authRouter.post("/logout", authMiddleware, AuthController.logout);
-authRouter.get("/refresh", );
+authRouter.get("/refresh", AuthController.refresh);
 
 authRouter.put(
 	"/update",
