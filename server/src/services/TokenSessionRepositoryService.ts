@@ -7,8 +7,14 @@ import type {
 	ITokensReturn
 } from "../types/auth.type";
 import type {
+	ICompareSessionByUserIdAndFingerprintProps,
+	ICompareSessionByUserIdAndFingerprintReturn,
+
 	IMethodCreateSessionProps,
 	IMethodCreateSessionReturn,
+
+	ICompareSessionByRefreshTokenProps,
+	ICompareSessionByRefreshTokenReturn,
 } from "../types/sessionToken.type";
 
 interface ITokenSessionRepositoryService { }
@@ -43,6 +49,28 @@ class TokenSessionRepositoryService implements ITokenSessionRepositoryService {
 			finger_print: fingerprint.hash,
 		});
 		return session;
+	}
+
+	async compareSessionTokenByUserIdAndFingerprint({
+		userId,
+		fingerprint
+	}: ICompareSessionByUserIdAndFingerprintProps): Promise<ICompareSessionByUserIdAndFingerprintReturn> {
+		const session = await sessionTokenModule.findOne({
+			userId,
+			finger_print: fingerprint.hash
+		});
+
+		return session ?? null;
+	}
+
+	async compareSessionTokenByRefreshToken({
+		refreshToken
+	}: ICompareSessionByRefreshTokenProps): Promise<ICompareSessionByRefreshTokenReturn> {
+		const session = await sessionTokenModule.findOne({
+			refresh_token: refreshToken,
+		});
+
+		return session ?? null;
 	}
 }
 
