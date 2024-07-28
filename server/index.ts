@@ -35,6 +35,7 @@ app.use(Fingerprint({
 	]
 }));
 app.use(fileUpload({}));
+app.use("/api/v1", express.static(path.resolve(__dirname, "src", "static")))
 app.use("/api/v1", router);
 app.use(errorMiddleware);
 
