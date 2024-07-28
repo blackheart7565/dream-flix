@@ -20,6 +20,8 @@ favoriteRoute.post(
 
 favoriteRoute.delete(
 	"/:favoriteId",
+	authMiddleware,
+	FavoriteController.delete
 );
 
 favoriteRoute.delete(

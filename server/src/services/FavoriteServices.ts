@@ -57,8 +57,19 @@ class FavoriteServices implements IFavoriteServices {
 	public async delete({
 		userId,
 		favoriteId
-	}: IFavoriteDeleteProps): Promise<IFavoriteDeleteReturn | void> {
+	}: IFavoriteDeleteProps): Promise<IFavoriteDeleteReturn> {
+		const favoriteExists = await favoriteModule.findOne({
+			_id: favoriteId,
+			userId,
+		});
 
+		if (!favoriteExists) {
+			throw ResponseException.badRequest(`Favorite item with ID ${favoriteId} not found!`);
+		}
+
+		const response = await favoriteExists.deleteOne();
+
+		return response;
 	}
 
 	public async deleteAll({

@@ -7,10 +7,12 @@ import {
 import FavoriteServices from "../services/FavoriteServices";
 
 import type { TError } from "../types/common";
+import { ResponseException } from "../exceptions/response.exception";
 
 import type {
 	IGetAllReturn,
-	IFavoriteCreateReturn
+	IFavoriteCreateReturn,
+	IFavoriteDeleteReturn
 } from "../types/favorite.type";
 
 interface IFavoriteController { }
@@ -60,8 +62,24 @@ class FavoriteController implements IFavoriteController {
 		}
 	}
 
-	public async delete(req: Req, res: Res, next: Next) {
+	public async delete(req: Req, res: Res, next: Next): Promise<Res<IFavoriteDeleteReturn> | void> {
+		try {
+			const { favoriteId } = req.params;
+			const { id } = req.user;
 
+			const response = await FavoriteServices.delete({
+				userId: id,
+				favoriteId,
+			});
+
+			if (!response) {
+				throw ResponseException.badRequest("Failed to remove item from favorites! Please try again later.");
+			}
+
+			return res.status(200).json("Successfully removed from favorites");
+		} catch (error: TError) {
+			next(error);
+		}
 	}
 
 	public async deleteAll(req: Req, res: Res, next: Next) {
