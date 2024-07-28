@@ -7,7 +7,10 @@ import {
 import CookieServices from "../services/CookieServices";
 import AuthServices from "../services/AuthServices";
 
-import type { IRegistrationReturn } from "../types/auth.type";
+import type {
+	IRegistrationReturn,
+	ILoginReturn
+} from "../types/auth.type";
 
 interface IAuthController { }
 
@@ -43,8 +46,34 @@ class AuthController implements IAuthController {
 		}
 	}
 
-	public async login(req: Req, res: Res, next: Next) {
+	public async login(req: Req, res: Res, next: Next): Promise<Res<ILoginReturn> | void> {
+		try {
+			const {
+				email,
+				password
+			} = req.body;
+			const { fingerprint } = req;
 
+			const {
+				user,
+				accessToken,
+				refreshToken,
+			} = await AuthServices.login({
+				email,
+				password,
+				fingerprint: fingerprint!
+			});
+
+			CookieServices.saveCookieRefreshToken(res, refreshToken);
+
+			return res.status(200).json({
+				user,
+				accessToken,
+				refreshToken,
+			});
+		} catch (error: any) {
+			next(error);
+		}
 	}
 
 	public async logout(req: Req, res: Res, next: Next) {

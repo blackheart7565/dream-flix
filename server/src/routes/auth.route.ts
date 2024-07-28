@@ -11,6 +11,7 @@ authRouter.post(
 
 authRouter.post(
 	"/login",
+	AuthController.login
 );
 
 authRouter.post("/logout", );

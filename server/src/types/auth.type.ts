@@ -24,8 +24,10 @@ export interface IRegistrationReturn extends IResponseReturn { }
 // 					Login
 // ================================================
 
-export interface ILoginProps { }
-export interface ILoginReturn { }
+export interface ILoginProps extends Pick<IUser, "email" | "password"> {
+	fingerprint: FingerprintResult;
+}
+export interface ILoginReturn extends IResponseReturn { }
 
 
 // ================================================

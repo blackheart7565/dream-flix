@@ -84,8 +84,58 @@ class AuthServices implements IAuthServices {
 		};
 	}
 
-	public async login({ }: ILoginProps) {
+	public async login({
+		email,
+		password,
+		fingerprint
+	}: ILoginProps): Promise<ILoginReturn> {
+		const userExist = await userModule.findOne({ email });
 
+		if (!userExist) {
+			throw ResponseException.badRequest("User is not found!");
+		}
+
+		const isPasswordEquals = await bcrypt.compare(password, userExist.password);
+
+		if (!isPasswordEquals) {
+			throw ResponseException.badRequest("Incorrect password");
+		}
+
+		const compareRefreshSession = await TokenSessionRepositoryService.compareSessionTokenByUserIdAndFingerprint({
+			userId: userExist.id,
+			fingerprint
+		});
+
+		if (compareRefreshSession) {
+			await TokenSessionRepositoryService.deleteSession({
+				refreshToken: compareRefreshSession.refresh_token
+			});
+		}
+
+		const payload = new UserDto({
+			id: userExist.id,
+			email: userExist.email,
+			username: userExist.username,
+			avatar: userExist.avatar,
+			poster: userExist.poster
+		});
+
+		const {
+			accessToken,
+			refreshToken
+		} = TokenSessionRepositoryService.generateTokens({ ...payload });
+
+		await TokenSessionRepositoryService.create({
+			userId: payload.id,
+			refreshToken,
+			fingerprint
+		});
+
+		return {
+			user: payload,
+			accessToken,
+			refreshToken
+		};
 	}
 
 	public async logout({ }: ILogoutProps) {
