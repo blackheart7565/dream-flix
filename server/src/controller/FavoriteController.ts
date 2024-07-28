@@ -9,7 +9,8 @@ import FavoriteServices from "../services/FavoriteServices";
 import type { TError } from "../types/common";
 
 import type {
-	IGetAllReturn
+	IGetAllReturn,
+	IFavoriteCreateReturn
 } from "../types/favorite.type";
 
 interface IFavoriteController { }
@@ -31,8 +32,32 @@ class FavoriteController implements IFavoriteController {
 		}
 	}
 
-	public async create(req: Req, res: Res, next: Next) {
+	public async create(req: Req, res: Res, next: Next): Promise<Res<IFavoriteCreateReturn> | void> {
+		try {
+			const {
+				userId,
+				mediaId,
+				mediaType,
+				mediaPosterPath,
+				mediaTitle,
+				mediaRating,
+				mediaReleaseDate,
+			} = req.body;
 
+			await FavoriteServices.create({
+				userId,
+				mediaId,
+				mediaType,
+				mediaPosterPath,
+				mediaTitle,
+				mediaRating,
+				mediaReleaseDate,
+			});
+
+			return res.status(200).json("Successfully added to favorites!");
+		} catch (error: TError) {
+			next(error);
+		}
 	}
 
 	public async delete(req: Req, res: Res, next: Next) {

@@ -14,6 +14,8 @@ favoriteRoute.get(
 
 favoriteRoute.post(
 	"/add",
+	authMiddleware,
+	FavoriteController.create
 );
 
 favoriteRoute.delete(
