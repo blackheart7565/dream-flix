@@ -16,6 +16,7 @@ mediaRoute.get(
 
 mediaRoute.get(
 	"/genre/list",
+	MediaController.mediaGenre
 );
 
 mediaRoute.get(

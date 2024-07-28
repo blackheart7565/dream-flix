@@ -12,7 +12,8 @@ import type { TError } from "../types/common";
 import type {
 	IMediaList,
 	TMediaListItem,
-	IMediaDetailsCommon
+	IMediaDetailsCommon,
+	IMediaGenres
 } from "../types/tmdb.response.type";
 
 interface IMediaController { }
@@ -63,8 +64,20 @@ class MediaController implements IMediaController {
 		}
 	}
 
-	async mediaGenre(req: Req, res: Res, next: Next) {
+	async mediaGenre(req: Req, res: Res, next: Next): Promise<Res<IMediaGenres> | void> {
+		try {
+			const { mediaType } = req.params;
 
+			const response = await MediaServices.mediaGenre({ mediaType });
+
+			if (!response || response.genres.length <= 0) {
+				throw ResponseException.notFound();
+			}
+
+			return res.status(200).json(response);
+		} catch (error: TError) {
+			next(error);
+		}
 	}
 
 	async mediaSearch(req: Req, res: Res, next: Next) {
