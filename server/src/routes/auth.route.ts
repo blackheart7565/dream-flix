@@ -2,6 +2,8 @@ import express from "express";
 
 import AuthController from "../controller/AuthController";
 
+import { authMiddleware } from "../middleware/auth.middleware";
+
 const authRouter = express.Router();
 
 authRouter.post(
@@ -14,7 +16,7 @@ authRouter.post(
 	AuthController.login
 );
 
-authRouter.post("/logout", );
+authRouter.post("/logout", authMiddleware, AuthController.logout);
 authRouter.get("/refresh", );
 
 authRouter.put(

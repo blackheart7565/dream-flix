@@ -7,9 +7,12 @@ import {
 import CookieServices from "../services/CookieServices";
 import AuthServices from "../services/AuthServices";
 
+import type { TError } from "../types/common";
+
 import type {
 	IRegistrationReturn,
-	ILoginReturn
+	ILoginReturn,
+	ILogoutReturn
 } from "../types/auth.type";
 
 interface IAuthController { }
@@ -75,13 +78,23 @@ class AuthController implements IAuthController {
 			next(error);
 		}
 	}
+	
+	public async logout(req: Req, res: Res, next: Next): Promise<Res<ILogoutReturn> | void> {
+		try {
+			const { refreshToken } = req.cookies;
 
-	public async logout(req: Req, res: Res, next: Next) {
+			const logout = await AuthServices.logout({ refreshToken });
 
+			CookieServices.removeRefreshToken(res);
+
+			return res.status(200).json({ logout });
+		} catch (error: TError) {
+			next(error);
+		}
 	}
 
 	public async refresh(req: Req, res: Res, next: Next) {
-
+		
 	}
 
 	public async updateUserData(req: Req, res: Res, next: Next) {

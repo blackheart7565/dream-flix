@@ -1,3 +1,4 @@
+import type { DeleteResult } from "mongodb";
 import { FingerprintResult } from "express-fingerprint";
 
 import type { IDtoUser, IUser } from "./user.type";
@@ -34,9 +35,9 @@ export interface ILoginReturn extends IResponseReturn { }
 // 					Logout
 // ================================================
 
-export interface ILogoutProps { }
+export interface ILogoutProps extends Pick<ITokensReturn, "refreshToken"> { }
 
-export interface ILogoutReturn { }
+export interface ILogoutReturn extends DeleteResult { }
 
 
 // ================================================

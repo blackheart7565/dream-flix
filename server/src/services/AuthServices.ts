@@ -138,8 +138,11 @@ class AuthServices implements IAuthServices {
 		};
 	}
 
-	public async logout({ }: ILogoutProps) {
-
+	public async logout({
+		refreshToken
+	}: ILogoutProps): Promise<ILogoutReturn> {
+		const session = await TokenSessionRepositoryService.deleteSession({ refreshToken });
+		return session;
 	}
 
 	public async refresh({ }: IRefreshProps) {

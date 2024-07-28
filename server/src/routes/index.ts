@@ -5,8 +5,8 @@ import authRouter from "./auth.route";
 const router = express.Router();
 
 router.use("/auth", authRouter);
-router.use("/:mediaType", );
-router.use("/favorite", );
+// router.use("/:mediaType",);
+// router.use("/favorite",);
 
 export default router;
 
