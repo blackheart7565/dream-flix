@@ -17,7 +17,9 @@ import type {
 	IMediaCredits,
 	IMediaRecommendation,
 	TMediaRecommendationCommon,
-	IMediaGenres
+	IMediaGenres,
+	IMediaSearch,
+	TMediaSearchCommon,
 } from "../types/tmdb.response.type";
 
 interface IMediaServices { }
@@ -59,8 +61,14 @@ class MediaServices implements IMediaServices {
 		return response;
 	}
 
-	async mediaSearch({ mediaType, mediaQuery, page }: IMediaSearchProps) {
-
+	async mediaSearch({ mediaType, mediaQuery, page }: IMediaSearchProps):Promise<IMediaSearch<TMediaSearchCommon>> {
+		const url: string = tmdbEndpoint.mediaSearch({
+			mediaType,
+			mediaQuery,
+			page
+		});
+		const response = await getTmdbAxios<IMediaSearch<TMediaSearchCommon>>(url);
+		return response;
 	}
 }
 

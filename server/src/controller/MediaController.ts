@@ -13,7 +13,9 @@ import type {
 	IMediaList,
 	TMediaListItem,
 	IMediaDetailsCommon,
-	IMediaGenres
+	IMediaGenres,
+	IMediaSearch,
+	TMediaSearchCommon,
 } from "../types/tmdb.response.type";
 
 interface IMediaController { }
@@ -80,8 +82,30 @@ class MediaController implements IMediaController {
 		}
 	}
 
-	async mediaSearch(req: Req, res: Res, next: Next) {
+	async mediaSearch(req: Req, res: Res, next: Next): Promise<Res<IMediaSearch<TMediaSearchCommon>> | void> {
+		try {
+			const { mediaType } = req.params;
+			const { mediaQuery, page } = req.query;
 
+			const pageNum: number = parseInt(page as string, 10);
+			if (isNaN(pageNum) || pageNum <= 0) {
+				throw ResponseException.badRequest("Invalid page number");
+			}
+
+			const response = await MediaServices.mediaSearch({
+				mediaType,
+				mediaQuery: mediaQuery as string,
+				page: pageNum.toString(),
+			});
+
+			if (!response || response.results.length <= 0) {
+				throw ResponseException.notFound();
+			}
+
+			return res.status(200).json(response);
+		} catch (error: TError) {
+			next(error);
+		}
 	}
 }
 

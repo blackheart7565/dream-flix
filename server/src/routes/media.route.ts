@@ -21,6 +21,7 @@ mediaRoute.get(
 
 mediaRoute.get(
 	"/search",
+	MediaController.mediaSearch
 );
 
 export default mediaRoute;
