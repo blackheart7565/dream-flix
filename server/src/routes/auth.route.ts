@@ -27,6 +27,8 @@ authRouter.put(
 
 authRouter.delete(
 	"/delete",
+	authMiddleware,
+	AuthController.deleteUser
 );
 
 export default authRouter;

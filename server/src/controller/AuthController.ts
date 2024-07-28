@@ -14,7 +14,8 @@ import type {
 	IRegistrationReturn,
 	ILoginReturn,
 	ILogoutReturn,
-	IUpdateReturn
+	IUpdateReturn,
+	IDeleteReturn
 } from "../types/auth.type";
 
 interface IAuthController { }
@@ -138,8 +139,25 @@ class AuthController implements IAuthController {
 		}
 	}
 
-	public async deleteUser(req: Req, res: Res, next: Next) {
+	public async deleteUser(req: Req, res: Res, next: Next): Promise<Res<IDeleteReturn> | void> {
+		try {
+			const { email } = req.body;
+			const { refreshToken } = req.cookies;
 
+			const response = await AuthServices.deleteUser({
+				email,
+				refreshToken
+			});
+
+			CookieServices.removeRefreshToken(res);
+
+			return res.status(200).json({
+				message: "User delete successfully!",
+				details: { ...response }
+			});
+		} catch (error: TError) {
+			next(error);
+		}
 	}
 }
 

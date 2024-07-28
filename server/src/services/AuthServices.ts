@@ -230,8 +230,31 @@ class AuthServices implements IAuthServices {
 		return responseUpdated;
 	}
 
-	public async deleteUser({ }: IDeleteProps) {
+	public async deleteUser({
+		email,
+		refreshToken
+	}: IDeleteProps): Promise<IDeleteReturn> {
+		const userExists = await userModule.findOne({ email });
+		if (!userExists) {
+			throw ResponseException.badRequest("User not found!");
+		}
 
+		if (!refreshToken) {
+			throw ResponseException.badRequest("Token not found!");
+		}
+
+		const avatarPath: string = path.resolve(__dirname, "..", "static", userExists?.avatar as string);
+		const posterPath: string = path.resolve(__dirname, "..", "static", userExists?.poster as string);
+		await Promise.all([
+			await FilesServices.checkAndDeleteFile(avatarPath),
+			await FilesServices.checkAndDeleteFile(posterPath)
+		]);
+
+		await TokenSessionRepositoryService.deleteSession({ refreshToken });
+
+		const responseDelete = await userModule.deleteOne({ email });
+
+		return responseDelete;
 	}
 }
 

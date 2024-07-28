@@ -65,8 +65,8 @@ export interface IUpdateReturn extends UpdateResult { }
 // 					Delete
 // ================================================
 
-export interface IDeleteProps { }
+export interface IDeleteProps extends Pick<IUser, "email">, Pick<ITokensReturn, "refreshToken"> { }
 
-export interface IDeleteReturn { }
+export interface IDeleteReturn extends DeleteResult { }
 
 
