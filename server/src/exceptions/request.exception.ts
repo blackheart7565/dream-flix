@@ -10,7 +10,7 @@ interface IRequestException { }
 
 class RequestException implements IRequestException {
 
-	validateRouter(req: Req, _: Res, next: Next) {
+	validateRouter(req: Req, _: Res, next: Next): void {
 		const errors = validationResult(req);
 
 		if (!errors.isEmpty())

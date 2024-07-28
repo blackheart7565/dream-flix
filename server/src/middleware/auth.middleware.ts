@@ -8,7 +8,7 @@ import TokenSessionRepositoryService from "../services/TokenSessionRepositorySer
 
 import { ResponseException } from "../exceptions/response.exception";
 
-export const authMiddleware = (req: Req, _: Res, next: Next) => {
+export const authMiddleware = (req: Req, _: Res, next: Next): void => {
 	try {
 		const authorizationToken = req.headers.authorization;
 

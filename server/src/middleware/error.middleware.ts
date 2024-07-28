@@ -6,7 +6,9 @@ import {
 
 import { ResponseException } from "../exceptions/response.exception";
 
-export const errorMiddleware = (err: any, _: Req, res: Res, next: Next) => {
+import type { IResponseData } from "../types/response.type";
+
+export const errorMiddleware = (err: any, _: Req, res: Res, next: Next): Res<IResponseData> => {
 	if (err instanceof ResponseException) {
 		return res
 			.status(err.getStatus)

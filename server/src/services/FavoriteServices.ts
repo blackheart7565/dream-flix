@@ -1,4 +1,6 @@
 
+import { DeleteResult } from "mongodb";
+
 import favoriteModule from "../modules/favorite.module";
 
 import { ResponseException } from "../exceptions/response.exception";
@@ -81,7 +83,7 @@ class FavoriteServices implements IFavoriteServices {
 			throw ResponseException.notFound("No favorite items found for the specified user.");
 		}
 
-		const deletionPromises = favoriteExists.map(async (favorite) => {
+		const deletionPromises = favoriteExists.map(async (favorite): Promise<DeleteResult> => {
 			const result = await favorite.deleteOne();
 			return result;
 		});

@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 /**
  * @param callback вызовется после успешного подключения к базе данных
  */
-export const dbConnection = (callback?: () => void) => {
+export const dbConnection = (callback?: () => void): void => {
 	const connectString: string = process.env.DATABASE_URL as string;
 
 	mongoose.connect(connectString)
