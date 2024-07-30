@@ -2,6 +2,9 @@
 
 Desktop.ini
 notes.md
+.idea
+dist-ssr
+*.local
 
 # dependencies
 /client/node_modules
@@ -13,8 +16,13 @@ notes.md
 # testing
 /client/coverage
 
+# logs
+logs
+*.log
+
 # production
 /client/build
+dist
 
 # misc
 .DS_Store
@@ -26,5 +34,16 @@ notes.md
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
 /server/src/static/
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
