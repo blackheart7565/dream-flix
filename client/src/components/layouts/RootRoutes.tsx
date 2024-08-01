@@ -1,7 +1,8 @@
 import React from "react";
-import { Route, Routes, useLocation } from "react-router-dom";
+import { Routes, useLocation } from "react-router-dom";
 
-import { BaseLayout } from "./BaseLayout";
+import { displayRoutes } from "../../utils/displayRoutes";
+import { pageRoutes } from "../../utils/pageRoutes";
 
 import type { Location as LocationRoutes } from "react-router-dom";
 
@@ -11,9 +12,7 @@ export const RootRoutes: React.FC<IRootRoutesProps> = (): JSX.Element => {
 	const location: LocationRoutes = useLocation();
 	return (
 		<Routes location={location} key={location.pathname}>
-			<Route path="/" element={<BaseLayout />}>
-				
-			</Route>
+			{displayRoutes(pageRoutes)}
 		</Routes>
 	);
 };
