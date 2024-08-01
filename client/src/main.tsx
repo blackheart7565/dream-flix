@@ -5,6 +5,7 @@ import { BrowserRouter } from "react-router-dom";
 import { RootRoutes } from "./components/layouts/RootRoutes";
 
 import "./styles/reset.css";
+import "./styles/importFonts.css";
 import './styles/index.css';
 
 ReactDOM.createRoot(document.getElementById('root')!)
