@@ -6,4 +6,5 @@ export const pageRoutesEndpoints: IPageRoutesEndpoints = {
 	serials: "serials",
 	details: ":mediaType/:mediaId",
 	pageNotFound: "*",
+	settings: "settings",
 };

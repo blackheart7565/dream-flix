@@ -5,4 +5,5 @@ export interface IPageRoutesEndpoints {
 	serials: string;
 	details: string;
 	pageNotFound: string;
+	settings: string;
 }
