@@ -1,4 +1,4 @@
-import { FiSettings } from "react-icons/fi"; 
+import { FiSettings } from "react-icons/fi";
 import { FiTv } from "react-icons/fi";
 import { BiMovie } from "react-icons/bi";
 import { AiFillHome } from "react-icons/ai";
@@ -11,16 +11,19 @@ export const navigation: INavigation[] = [
 	{
 		id: 1,
 		path: pageRoutesEndpoints.home,
+		select: pageRoutesEndpoints.home,
 		title: "Home",
 	},
 	{
 		id: 2,
 		path: pageRoutesEndpoints.movie,
+		select: `/${pageRoutesEndpoints.movie}`,
 		title: "Films",
 	},
 	{
 		id: 3,
 		path: pageRoutesEndpoints.serials,
+		select: `/${pageRoutesEndpoints.serials}`,
 		title: "Serials",
 	},
 ];

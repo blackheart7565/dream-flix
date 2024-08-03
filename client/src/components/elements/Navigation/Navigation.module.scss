@@ -1,0 +1,60 @@
+.navigation {
+	$self: &;
+	width: max-content;
+	height: auto;
+
+	&.burger {
+		#{$self}List {
+			flex-direction: column;
+			align-items: flex-start;
+			gap: 10px;
+		}
+	}
+
+	&List {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		gap: 20px;
+	}
+
+	&Item {
+		display: inline-block;
+		overflow: hidden;
+	}
+
+	&Item.active {
+		#{$self}Link {
+			color: #00ffff;
+
+			&::after {
+				background-color: #00ffff;
+			}
+		}
+	}
+
+	&Link {
+		display: block;
+		font-size: 1.5rem;
+		font-weight: 500;
+		letter-spacing: 0.05rem;
+		position: relative;
+		line-height: 3rem;
+
+		&::after {
+			content: "";
+			position: absolute;
+			bottom: 0;
+			left: -100%;
+			width: 100%;
+			height: 2px;
+			background-color: #FFF;
+			transition: left 0.2s ease-in-out;
+		}
+
+		&:hover::after {
+			left: 0;
+		}
+	}
+}
