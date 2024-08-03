@@ -1,0 +1,58 @@
+.btnBurgerMenu {
+	$heightLine: 3px;
+
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 40px;
+	height: 40px;
+	position: relative;
+	background-color: transparent;
+	border: none;
+
+	span {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: calc(100% - 10px);
+		height: $heightLine;
+		background-color: #fff;
+		transition: width 0.3s ease-in-out;
+		border-radius: 50px;
+	}
+
+	&::before,
+	&::after {
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: calc(100% - 20px);
+		height: $heightLine;
+		background-color: #fff;
+		border-radius: 50px;
+		transition: width 0.3s ease-in-out;
+	}
+
+	&::before {
+		transform: translate(-50%, calc(-50% + (-7px)));
+	}
+
+	&::after {
+		transform: translate(-50%, calc(-50% + (+7px)));
+	}
+
+	&:hover span {
+		width: calc(100% - 20px);
+	}
+
+	&:hover::before {
+		width: calc(100% - 10px);
+	}
+
+	&:hover::after {
+		width: calc(100% - 10px);
+	}
+}
