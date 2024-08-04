@@ -1,12 +1,12 @@
 import React, { HTMLAttributes } from "react";
 import { Link } from "react-router-dom";
 
-import type { IUserDropDown } from "../../../types/userDropDown";
+import type { IUserDropDownData } from "../../../types/userDropDown";
 
 import style from "./UserDropDown.module.scss";
 
 interface IUserDropDownItemProps extends HTMLAttributes<HTMLLIElement> {
-	data: IUserDropDown;
+	data: IUserDropDownData;
 }
 
 export const UserDropDownItem: React.FC<IUserDropDownItemProps> = ({
