@@ -11,7 +11,7 @@ export const langSlice = createSlice({
 	name: "lang",
 	initialState,
 	reducers: {
-		setLang(state, action: PayloadAction<AllowedLangs>): void {
+		setLang(state, action: PayloadAction<AllowedLangs>): void {			
 			state.lang = action.payload;
 		}
 	}

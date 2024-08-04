@@ -6,6 +6,15 @@
 				"movie": "Films",
 				"serials": "Serials"
 			}
+		},
+		"useDropDown": {
+			"main-menu": {
+				"account": "Account",
+				"settings": "Settings",
+				"lang": "Language",
+				"exit": "Exit"
+			},
+			"submenu": {}
 		}
 	},
 	"ru": {
@@ -15,6 +24,15 @@
 				"movie": "Фильмы",
 				"serials": "Сериалы"
 			}
+		},
+		"useDropDown": {
+			"main-menu": {
+				"account": "Аккаунт",
+				"settings": "Настройки",
+				"lang": "Язык",
+				"exit": "Выход"
+			},
+			"submenu": {}
 		}
 	}
 }

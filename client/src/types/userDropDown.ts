@@ -9,7 +9,7 @@ export interface IUserDropDownSubmenu {
 	title: string;
 }
 
-export interface IUserDropDown {
+export interface IUserDropDownData {
 	id: number;
 	path: string;
 	title: string;

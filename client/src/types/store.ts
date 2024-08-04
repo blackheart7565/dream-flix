@@ -8,3 +8,11 @@ export type TDispatchType = typeof store.dispatch;
 export interface IInitialStateLang {
 	lang: AllowedLangs;
 }
+
+export interface IInitialStateUserDropDown {
+	submenu: {
+		lang: {
+			selectedItemId: number,
+		};
+	};
+}

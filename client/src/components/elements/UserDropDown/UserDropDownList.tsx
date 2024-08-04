@@ -1,15 +1,17 @@
 import React, { useState } from "react";
 
-import { actionHandlers, userDropDownData } from "../../../utils/userDropDown";
+import { getUserDropDownData } from "../../../utils/userDropDown";
 import { UserDropDownItem } from "./UserDropDownItem";
 import { UserDropDownSubmenuList } from "./UserDropDownSubmenuList";
+import { useUserDropDownHandlers } from "../../../hooks/useUserDropDownHandlers";
 
 import type {
-	IUserDropDown,
+	IUserDropDownData,
 	IUserDropDownSubmenu,
 } from "../../../types/userDropDown";
 
 import style from "./UserDropDown.module.scss";
+import { useLang } from "../../../hooks/useLang";
 
 interface IUserDropDownListProps { }
 
@@ -18,8 +20,11 @@ export const UserDropDownList: React.FC<IUserDropDownListProps> = (): JSX.Elemen
 	const [isOpenSubmenu, setIsOpenSubmenu] = useState<boolean>(false);
 	const [currentAction, setCurrentAction] = useState<string | undefined>(undefined);
 	const [currentTitle, setCurrentTitle] = useState<string>("");
+	const { lang, translation } = useLang();
+	const userDropDownData = getUserDropDownData(lang, translation);
+	const { actionHandlers } = useUserDropDownHandlers();
 
-	const handlerSelect = (data: IUserDropDown): void => {
+	const handlerSelect = (data: IUserDropDownData): void => {
 		if (data.submenu.length <= 0 && !data.action) {
 			setIsOpenSubmenu(false);
 			setCurrentTitle("");
@@ -41,6 +46,7 @@ export const UserDropDownList: React.FC<IUserDropDownListProps> = (): JSX.Elemen
 	const handleAction = (action: string | undefined, data: string): void => {
 		if (action && actionHandlers[action]) {
 			actionHandlers[action](data);
+			handlerBack();
 		}
 	};
 
@@ -53,7 +59,7 @@ export const UserDropDownList: React.FC<IUserDropDownListProps> = (): JSX.Elemen
 		<nav className={style.userDropDownNav}>
 			{!isOpenSubmenu && (
 				<ul className={style.userDropDownList}>
-					{userDropDownData.map((item: IUserDropDown) => (
+					{userDropDownData.map((item: IUserDropDownData) => (
 						<UserDropDownItem
 							key={item.id}
 							data={item}
