@@ -11,6 +11,10 @@
 	background-color: transparent;
 	border: none;
 
+	@media screen and (min-width: 960px) {
+		display: none;
+	}
+
 	span {
 		position: absolute;
 		top: 50%;

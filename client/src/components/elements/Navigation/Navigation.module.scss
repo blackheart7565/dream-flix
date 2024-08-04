@@ -3,6 +3,10 @@
 	width: max-content;
 	height: auto;
 
+	@media screen and (max-width: 960px) {
+		display: none;
+	}
+
 	&.burger {
 		#{$self}List {
 			flex-direction: column;
