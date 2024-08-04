@@ -48,15 +48,17 @@
 		transform: translate(-50%, calc(-50% + (+7px)));
 	}
 
-	&:hover span {
-		width: calc(100% - 20px);
-	}
+	@media (hover: hover) {
+		&:hover span {
+			width: calc(100% - 20px);
+		}
 
-	&:hover::before {
-		width: calc(100% - 10px);
-	}
+		&:hover::before {
+			width: calc(100% - 10px);
+		}
 
-	&:hover::after {
-		width: calc(100% - 10px);
+		&:hover::after {
+			width: calc(100% - 10px);
+		}
 	}
 }
