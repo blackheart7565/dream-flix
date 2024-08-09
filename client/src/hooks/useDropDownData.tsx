@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useMemo } from "react";
+import { ReactElement, useCallback, useMemo } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import { AiFillSetting } from "react-icons/ai";
 import { MdLanguage } from "react-icons/md";
@@ -12,11 +12,13 @@ import { useLocalStorage } from "./useLocalStorage";
 import type { ISubmenuList } from "../components/UI/ProfileDropDown/DropDownSubmenu";
 import type { ILocalStorageLang } from "../types/localStorage";
 
+import style from "../components/UI/globalUI.module.scss";
+
 export interface IDropdownData {
 	id: number;
 	label: string;
 	path?: string;
-	icon?: ReactNode;
+	icon?: ReactElement;
 	onButtonClick?: React.MouseEventHandler<HTMLButtonElement>;
 	submenu?: ISubmenuList[];
 }
@@ -43,19 +45,19 @@ export const useDropDownData = (): IDropdownData[] => {
 			id: 1,
 			path: "/account",
 			label: translation[langType].useDropDown["main-menu"].account,
-			icon: <FaUserCircle />,
+			icon: <FaUserCircle className={style.icon} />,
 		},
 		{
 			id: 2,
 			path: "/settings",
 			label: translation[langType].useDropDown["main-menu"].settings,
-			icon: <AiFillSetting />,
+			icon: <AiFillSetting className={style.icon} />,
 		},
 		{
 			id: 3,
 			path: "",
 			label: `${translation[langType].useDropDown["main-menu"].lang}: ${language.lang.name}`,
-			icon: <MdLanguage />,
+			icon: <MdLanguage className={style.icon} />,
 			submenu: [
 				{
 					id: 1,
@@ -73,7 +75,7 @@ export const useDropDownData = (): IDropdownData[] => {
 			id: 4,
 			path: "",
 			label: translation[langType].useDropDown["main-menu"].exit,
-			icon: <BiExit />,
+			icon: <BiExit className={style.icon} />,
 			onButtonClick: (): void => {
 				console.log("Logout account success!");
 			}

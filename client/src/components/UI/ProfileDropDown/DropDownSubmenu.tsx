@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { ReactElement, useState } from "react";
 import classNames from "classnames";
 import { CgArrowLeft } from "react-icons/cg";
 
@@ -11,16 +11,19 @@ export interface ISubmenuList {
 	id: number;
 	label: string;
 	path?: string;
+	icon?: ReactElement;
 	onButtonClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 interface IDropDownSubmenuProps {
 	label: string;
+	icon?: ReactElement;
 	submenu: ISubmenuList[];
 }
 
 export const DropDownSubmenu: React.FC<IDropDownSubmenuProps> = ({
 	label,
+	icon,
 	submenu,
 }): JSX.Element => {
 	const [isOpenSubmenu, setIsOpenSubmenu] = useState<boolean>(false);
@@ -33,6 +36,9 @@ export const DropDownSubmenu: React.FC<IDropDownSubmenuProps> = ({
 				className={classNames(style.submenuBtn, style.buttonItem)}
 				onClick={handleOpenSubmenu}
 			>
+				{icon && (
+					<span className={style.iconContainer}>{icon}</span>
+				)}
 				<span>{label}</span>
 			</button>
 
@@ -56,6 +62,7 @@ export const DropDownSubmenu: React.FC<IDropDownSubmenuProps> = ({
 								key={item.id}
 								path={item.path ? item.path : ""}
 								label={item.label}
+								icon={item.icon}
 								onButtonClick={item.onButtonClick}
 								csNames={classNames(style.submenuItem, style.buttonItem)}
 							/>

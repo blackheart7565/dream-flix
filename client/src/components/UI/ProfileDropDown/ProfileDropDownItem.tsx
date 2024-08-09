@@ -21,6 +21,7 @@ export const ProfileDropDownItem: React.FC<IProfileDropDownItemProps> = ({
 				<ButtonDropDownItem
 					path={item.path ? item.path : ""}
 					label={item.label}
+					icon={item.icon}
 					onButtonClick={item.onButtonClick}
 					csNames={classNames(style.buttonDropDownItem, style.buttonItem)}
 				/>
@@ -28,6 +29,7 @@ export const ProfileDropDownItem: React.FC<IProfileDropDownItemProps> = ({
 				<DropDownSubmenu
 					label={item.label}
 					submenu={item.submenu!}
+					icon={item.icon}
 				/>
 			)}
 		</li>

@@ -1,4 +1,3 @@
-
 .profileDropdown {
 	position: relative;
 
@@ -28,6 +27,9 @@
 			gap: 15px;
 
 			.buttonItem {
+				display: flex;
+				align-items: center;
+				gap: 10px;
 				width: 100%;
 				height: 100%;
 				padding: 15px;
@@ -58,11 +60,11 @@
 				height: auto;
 				line-height: 1.2rem;
 
-				.arrow {
-					display: inline-block;
-					width: 25px;
-					height: 25px;
-				}
+				// .arrow {
+				// 	display: inline-block;
+				// 	width: 25px;
+				// 	height: 25px;
+				// }
 			}
 
 			.submenuNav {
@@ -131,4 +133,10 @@
 		letter-spacing: 1px;
 		transition: color 0.3s ease-in-out;
 	}
+}
+
+.iconContainer {
+	display: inline-block;
+	width: 20px;
+	height: 20px;
 }
