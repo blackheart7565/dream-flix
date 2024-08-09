@@ -7,6 +7,7 @@ import {
 	ButtonTheme,
 	ButtonFavorite,
 	ButtonBurgerMenu,
+	ProfileDropDown,
 } from "../../UI";
 
 import style from "./Header.module.scss";
@@ -22,7 +23,7 @@ export const Header: React.FC<IHeaderProps> = (): JSX.Element => {
 				<div className={style.btnGroup}>
 					<ButtonFavorite />
 					<ButtonTheme id={"btn-theme"} />
-					
+					<ProfileDropDown />
 				</div>
 				<ButtonBurgerMenu />
 			</div>

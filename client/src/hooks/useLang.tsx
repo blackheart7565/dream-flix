@@ -7,7 +7,7 @@ export const useLang = () => {
 	const translation: TTranslation = transitionJson;
 
 	return {
-		lang: lang.lang,
+		langType: lang.lang.type,
 		translation: translation
 	};
 };

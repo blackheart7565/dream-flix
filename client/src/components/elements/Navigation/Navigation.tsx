@@ -13,8 +13,8 @@ interface INavigationProps { }
 
 export const Navigation: React.FC<INavigationProps> = (): JSX.Element => {
 	const location: LocationRoutes = useLocation();
-	const { lang, translation } = useLang();
-	const navigation: INavigation[] = getNavigation(lang, translation);
+	const { langType, translation } = useLang();
+	const navigation: INavigation[] = getNavigation(langType, translation);
 
 	return (
 		<nav className={style.navigation}>

@@ -2,9 +2,9 @@ import { useSelector, useDispatch } from "react-redux";
 
 import { TDispatchType, TStateStore } from "../types/store";
 import { langReducer } from "../store/reducers/langReducers";
-import { AllowedLangs } from "../constants/lang";
 
 import type { TypedUseSelectorHook } from "react-redux";
+import type { ILocalStorageLang } from "../types/localStorage";
 
 export const useRedux = () => {
 	const useAppSelector: TypedUseSelectorHook<TStateStore> = useSelector;
@@ -13,7 +13,7 @@ export const useRedux = () => {
 	const dispatch = useAppDispatch();
 
 	const lang = useAppSelector(state => state.lang);
-	const setLang = (lang: AllowedLangs): void => {
+	const setLang = (lang: ILocalStorageLang): void => {
 		dispatch(langReducer.actions.setLang(lang));
 	};
 

@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
 import { TSetStateDispatcher } from "../types/state";
 
+export enum ELocalStorage {
+	LANG = "lang",
+}
+
 type TLocalStorageReturn<T> = [T, TSetStateDispatcher<T>];
 
 export const useLocalStorage = <T,>(key: string, defData: T): TLocalStorageReturn<T> => {
