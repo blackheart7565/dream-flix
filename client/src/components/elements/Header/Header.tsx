@@ -3,7 +3,6 @@ import classNames from "classnames";
 
 import { Logo } from "../Logo/Logo";
 import { Navigation } from "../Navigation/Navigation";
-import { UserDropDown } from "../UserDropDown/UserDropDown";
 import {
 	ButtonTheme,
 	ButtonFavorite,
@@ -23,7 +22,7 @@ export const Header: React.FC<IHeaderProps> = (): JSX.Element => {
 				<div className={style.btnGroup}>
 					<ButtonFavorite />
 					<ButtonTheme id={"btn-theme"} />
-					<UserDropDown />
+					
 				</div>
 				<ButtonBurgerMenu />
 			</div>
