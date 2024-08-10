@@ -4,7 +4,7 @@ import { CgArrowLeft } from "react-icons/cg";
 
 import { ButtonDropDownItem } from "./ButtonDropDownItem";
 
-import styleGlobalUI from "../globalUI.module.scss";
+import styleGlobalUI from "../../../styles/global.module.scss";
 import style from "./ProfileDropDown.module.scss";
 
 export interface ISubmenuList {
@@ -37,7 +37,7 @@ export const DropDownSubmenu: React.FC<IDropDownSubmenuProps> = ({
 				onClick={handleOpenSubmenu}
 			>
 				{icon && (
-					<span className={style.iconContainer}>{icon}</span>
+					<span className={styleGlobalUI.iconContainer}>{icon}</span>
 				)}
 				<span>{label}</span>
 			</button>
@@ -48,7 +48,7 @@ export const DropDownSubmenu: React.FC<IDropDownSubmenuProps> = ({
 						className={classNames(style.submenuBtn, style.buttonItem)}
 						onClick={handleOpenSubmenu}
 					>
-						<span className={style.arrow}>
+						<span className={styleGlobalUI.iconContainer}>
 							<CgArrowLeft className={styleGlobalUI.icon} />
 						</span>
 						<span>Back</span>

@@ -2,8 +2,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { MdFavorite } from "react-icons/md";
 
-import styleGlobalUI from "../globalUI.module.scss";
+import styleGlobalUI from "../../../styles/global.module.scss";
 import style from "./ButtonFavorite.module.scss";
+import classNames from "classnames";
 
 interface IButtonFavoriteProps {
 	path?: string;
@@ -15,7 +16,7 @@ export const ButtonFavorite: React.FC<IButtonFavoriteProps> = ({
 	return (
 		<Link
 			to={path || ""}
-			className={`${style.btnFavorite} ${styleGlobalUI.btnGroup}`}>
+			className={classNames(styleGlobalUI.btnIcon, style.btnFavorite)}>
 			<MdFavorite className={styleGlobalUI.icon} />
 		</Link>
 	);

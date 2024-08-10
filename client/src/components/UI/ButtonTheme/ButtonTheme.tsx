@@ -1,8 +1,9 @@
 import React, { ChangeEvent, HTMLAttributes, useState } from "react";
 import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
 
-import styleGlobalUI from "../globalUI.module.scss";
+import styleGlobalUI from "../../../styles/global.module.scss";
 import style from "./ButtonTheme.module.scss";
+import classNames from "classnames";
 
 interface IButtonThemeProps extends HTMLAttributes<HTMLButtonElement> {
 	id: string;
@@ -20,7 +21,7 @@ export const ButtonTheme: React.FC<IButtonThemeProps> = ({
 	return (
 		<label
 			htmlFor={id}
-			className={`${styleGlobalUI.btnGroup} ${style.btnTheme}`}
+			className={classNames(styleGlobalUI.btnIcon, style.btnTheme)}
 		>
 			<input
 				id={id}

@@ -1,7 +1,8 @@
 import React from "react";
+import classNames from "classnames";
 import { Link } from "react-router-dom";
 
-import styleGlobalUI from "../globalUI.module.scss";
+import styleGlobalUI from "../../../styles/global.module.scss";
 import style from "./ButtonBurgerMenu.module.scss";
 
 interface IButtonBurgerMenuProps { }
@@ -10,7 +11,7 @@ export const ButtonBurgerMenu: React.FC<IButtonBurgerMenuProps> = (): JSX.Elemen
 	return (
 		<Link
 			to={""}
-			className={`${styleGlobalUI.btnGroup} ${style.btnBurgerMenu}`}>
+			className={classNames(styleGlobalUI.btnIcon, style.btnBurgerMenu)}>
 			<span></span>
 		</Link>
 	);
