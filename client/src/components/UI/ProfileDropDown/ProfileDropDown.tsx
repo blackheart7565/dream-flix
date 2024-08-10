@@ -1,10 +1,12 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useState } from "react";
 import classNames from "classnames";
 
 import { ProfileDropDownItem } from "./ProfileDropDownItem";
 import { useDropDownData, type IDropdownData } from "../../../hooks/useDropDownData";
+import { useClickOutside } from "../../../hooks/useClickOutside";
 
 import style from "./ProfileDropDown.module.scss";
+import { useMergedRef } from "../../../hooks/useMergedRef";
 
 interface IProfileDropDownProps {
 	pathImageBtn?: string;
@@ -21,14 +23,17 @@ export const ProfileDropDown: React.FC<IProfileDropDownProps> = forwardRef<HTMLD
 	labelBtn = "DropDown",
 	csRootNames,
 }, ref): JSX.Element => {
-	const [isOpenMenu, setIsOpenMenu] = React.useState<boolean>(false);
+	const [isOpenMenu, setIsOpenMenu] = useState<boolean>(false);
+
+	const refOutside = useClickOutside<HTMLDivElement>((): void => setIsOpenMenu(false));
+	const mergeRef = useMergedRef(refOutside, ref);
 
 	const dropdownData = useDropDownData();
 
 	const handleOpenMenu = (): void => setIsOpenMenu(prev => !prev);
 
 	return (
-		<div className={classNames(style.profileDropdown, csRootNames)} ref={ref}>
+		<div className={classNames(style.profileDropdown, csRootNames)} ref={mergeRef}>
 			<button className={style.avatar} onClick={handleOpenMenu}>
 				<div className={style.avatarContainer}>
 					{isImage && <img src={pathImageBtn} alt="avatar" />}
