@@ -3,11 +3,11 @@ import { Location as LocationRoutes, useLocation } from "react-router-dom";
 
 import { NavigationItem } from "./NavigationItem";
 import { useLang } from "../../../hooks/useLang";
+import { getNavigation } from "../../../utils/navigation";
 
 import type { INavigation } from "../../../types/navigation";
 
-import style from "./Navigation.module.scss";
-import { getNavigation } from "../../../utils/navigation";
+import "./Navigation.scss";
 
 interface INavigationProps { }
 
@@ -17,8 +17,23 @@ export const Navigation: React.FC<INavigationProps> = (): JSX.Element => {
 	const navigation: INavigation[] = getNavigation(langType, translation);
 
 	return (
-		<nav className={style.navigation}>
-			<ul className={style.navigationList}>
+		<nav className={
+			`
+				w-max
+				h-auto
+				lg:block
+				hidden
+			`
+		}>
+			<ul className={
+				`
+					flex
+					items-center
+					w-full
+					h-full
+					gap-5
+				`
+			}>
 				{navigation.map((nav: INavigation): JSX.Element => (
 					<NavigationItem
 						key={nav.id}

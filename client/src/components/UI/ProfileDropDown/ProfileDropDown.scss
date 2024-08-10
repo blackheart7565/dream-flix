@@ -1,0 +1,24 @@
+.buttonDropDownItem {
+	transition: background-color, 0.3s ease-in-out, color 0.3s ease-in-out;
+
+	@apply flex items-center gap-2.5 w-full h-full p-4 pl-6 leading-5 text-start font-medium;
+
+	@media (hover: hover) {
+		&:hover {
+			background-color: #1b1b1b;
+			color: #00ffff;
+		}
+	}
+}
+
+.avatar {
+	@media (hover: hover) {
+		&:hover span {
+			color: #00ffff;
+		}
+	}
+
+	&>.textAvatar {
+		transition: color 0.3s ease-in-out;
+	}
+}

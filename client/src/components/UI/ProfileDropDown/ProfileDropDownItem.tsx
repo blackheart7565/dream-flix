@@ -6,8 +6,6 @@ import { DropDownSubmenu } from "./DropDownSubmenu";
 
 import { type IDropdownData } from "../../../hooks/useDropDownData";
 
-import style from "./ProfileDropDown.module.scss";
-
 interface IProfileDropDownItemProps {
 	item: IDropdownData;
 }
@@ -16,14 +14,23 @@ export const ProfileDropDownItem: React.FC<IProfileDropDownItemProps> = ({
 	item,
 }): JSX.Element => {
 	return (
-		<li className={style.item}>
+		<li className={`
+			cursor-pointer
+			text-[1.2rem]
+			tracking-wider
+			leading-5
+			flex
+			justify-start
+			items-center
+			gap-4
+		`}>
 			{!item.submenu?.length ? (
 				<ButtonDropDownItem
 					path={item.path ? item.path : ""}
 					label={item.label}
 					icon={item.icon}
 					onButtonClick={item.onButtonClick}
-					csNames={classNames(style.buttonDropDownItem, style.buttonItem)}
+					csNames={classNames("buttonDropDownItem")}
 				/>
 			) : (
 				<DropDownSubmenu

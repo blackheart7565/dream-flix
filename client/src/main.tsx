@@ -8,7 +8,8 @@ import store from "./store/store";
 
 import "./styles/reset.css";
 import "./styles/importFonts.css";
-import './styles/index.scss';
+import './styles/index.css';
+import './styles/global.css';
 
 ReactDOM.createRoot(document.getElementById('root')!)
 	.render(

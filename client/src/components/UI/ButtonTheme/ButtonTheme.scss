@@ -1,0 +1,21 @@
+.field {
+	&:checked~.moon {
+		transition-delay: 0.3s;
+		transform: scale(1) rotate(360deg);
+	}
+
+	&:checked~.sunny {
+		transform: rotate(360deg) scale(0);
+	}
+}
+
+.moon {
+	position: absolute;
+	transform: scale(0);
+	transition: transform 1.2s ease;
+}
+
+.sunny {
+	position: absolute;
+	transition: transform 1s ease;
+}

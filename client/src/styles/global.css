@@ -1,0 +1,16 @@
+.btnIcon {
+	@apply w-9 h-9;
+}
+
+.iconContainer {
+	@apply inline-block w-5 h-5
+}
+
+.icon {
+	@apply w-full h-full
+}
+
+.container {
+	@apply max-w-7xl mx-auto lg:px-5 px-2.5
+}
+

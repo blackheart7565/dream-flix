@@ -1,7 +1,7 @@
 import React, { HTMLAttributes } from "react";
 import classNames from "classnames";
 
-import style from "./Navigation.module.scss";
+import "./Navigation.scss";
 
 interface INavigationItemProps extends HTMLAttributes<HTMLAnchorElement> {
 	path: string;
@@ -14,10 +14,24 @@ export const NavigationItem: React.FC<INavigationItemProps> = ({
 	isActive,
 }): JSX.Element => {
 	return (
-		<li className={classNames(style.navigationItem,
-			isActive && style.active
+		<li className={classNames(
+			"navItem",
+			`
+				inline-block
+				overflow-hidden
+			`,
+			isActive && "active"
 		)}>
-			<a href={path} className={style.navigationLink}>
+			<a href={path} className={classNames(
+				"navLink",
+				`
+					block
+					text-[1.3rem]
+					font-medium
+					relative
+					leading-[3rem]					
+				`
+			)}>
 				{children}
 			</a>
 		</li>

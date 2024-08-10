@@ -12,7 +12,7 @@ import { useLocalStorage } from "./useLocalStorage";
 import type { ISubmenuList } from "../components/UI/ProfileDropDown/DropDownSubmenu";
 import type { ILocalStorageLang } from "../types/localStorage";
 
-import styleGlobalUI from "../styles/global.module.scss";
+// import styleGlobalUI from "../styles/global.module.scss";
 
 export interface IDropdownData {
 	id: number;
@@ -45,19 +45,19 @@ export const useDropDownData = (): IDropdownData[] => {
 			id: 1,
 			path: "/account",
 			label: translation[langType].useDropDown["main-menu"].account,
-			icon: <FaUserCircle className={styleGlobalUI.icon} />,
+			icon: <FaUserCircle className={"icon"} />,
 		},
 		{
 			id: 2,
 			path: "/settings",
 			label: translation[langType].useDropDown["main-menu"].settings,
-			icon: <AiFillSetting className={styleGlobalUI.icon} />,
+			icon: <AiFillSetting className={"icon"} />,
 		},
 		{
 			id: 3,
 			path: "",
 			label: `${translation[langType].useDropDown["main-menu"].lang}: ${language.lang.name}`,
-			icon: <MdLanguage className={styleGlobalUI.icon} />,
+			icon: <MdLanguage className={"icon"} />,
 			submenu: [
 				{
 					id: 1,
@@ -75,7 +75,7 @@ export const useDropDownData = (): IDropdownData[] => {
 			id: 4,
 			path: "",
 			label: translation[langType].useDropDown["main-menu"].exit,
-			icon: <BiExit className={styleGlobalUI.icon} />,
+			icon: <BiExit className={"icon"} />,
 			onButtonClick: (): void => {
 				console.log("Logout account success!");
 			}

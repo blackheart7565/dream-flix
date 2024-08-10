@@ -4,8 +4,7 @@ import { CgArrowLeft } from "react-icons/cg";
 
 import { ButtonDropDownItem } from "./ButtonDropDownItem";
 
-import styleGlobalUI from "../../../styles/global.module.scss";
-import style from "./ProfileDropDown.module.scss";
+import "./ProfileDropDown.scss";
 
 export interface ISubmenuList {
 	id: number;
@@ -31,32 +30,62 @@ export const DropDownSubmenu: React.FC<IDropDownSubmenuProps> = ({
 	const handleOpenSubmenu = (): void => setIsOpenSubmenu(prev => !prev);
 
 	return (
-		<div className={style.submenu}>
+		<div className={"w-full"}>
 			<button
-				className={classNames(style.submenuBtn, style.buttonItem)}
+				className={classNames(
+					"buttonDropDownItem",
+					`
+						flex 
+						items-center 
+						justify-start 
+						gap-1.5 
+						h-auto 
+						leading-5
+					`,
+				)}
 				onClick={handleOpenSubmenu}
 			>
 				{icon && (
-					<span className={styleGlobalUI.iconContainer}>{icon}</span>
+					<span className={"iconContainer"}>{icon}</span>
 				)}
 				<span>{label}</span>
 			</button>
 
 			{isOpenSubmenu && (
-				<nav className={style.submenuNav}>
+				<nav className={
+					`
+						pb-5 
+						w-full 
+						h-full 
+						absolute
+						top-0 
+						right-0 
+						bg-black
+					`
+				}>
 					<button
-						className={classNames(style.submenuBtn, style.buttonItem)}
+						className={classNames(
+							"buttonDropDownItem",
+							`
+								flex 
+								justify-start 
+								items-center 
+								gap-1.5 
+								h-auto 
+								leading-5
+							`,
+						)}
 						onClick={handleOpenSubmenu}
 					>
-						<span className={styleGlobalUI.iconContainer}>
-							<CgArrowLeft className={styleGlobalUI.icon} />
+						<span className={"iconContainer"}>
+							<CgArrowLeft className={"icon"} />
 						</span>
 						<span>Back</span>
 					</button>
 
-					<hr className={style.line} />
+					<hr className={"w-full h-0.5 bg-white mb-2.5"} />
 
-					<ul className={style.submenuList}>
+					<ul>
 						{submenu.map((item: ISubmenuList): JSX.Element => (
 							<ButtonDropDownItem
 								key={item.id}
@@ -64,7 +93,19 @@ export const DropDownSubmenu: React.FC<IDropDownSubmenuProps> = ({
 								label={item.label}
 								icon={item.icon}
 								onButtonClick={item.onButtonClick}
-								csNames={classNames(style.submenuItem, style.buttonItem)}
+								csNames={classNames(
+									"buttonDropDownItem",
+									`
+										cursor-pointer
+										text-[1.2rem]
+										tracking-wider
+										leading-5
+										flex
+										justify-start
+										items-center
+										gap-4
+									`,
+								)}
 							/>
 						))}
 					</ul>

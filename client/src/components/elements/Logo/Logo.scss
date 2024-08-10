@@ -1,0 +1,13 @@
+.logo {
+	.text {
+		transition: color 0.25s ease-in-out;
+	}
+
+	@media (hover: hover) {
+		&:hover {
+			.text {
+				color: #00ffff;
+			}
+		}
+	}
+}
