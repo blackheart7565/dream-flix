@@ -7,7 +7,7 @@ body,
 body {
 	font-size: 16px;
 	font-weight: 400;
-	font-family: 'Kanit';
+	font-family: "Roboto", sans-serif;
 	min-width: 320px;
 	background-image: radial-gradient(circle at 99% 33%, hsla(235, 0%, 48%, 0.03) 0%, hsla(235, 0%, 48%, 0.03) 37%,
 			transparent 37%, transparent 100%), radial-gradient(circle at 46% 16%, hsla(235, 0%, 48%, 0.03) 0%, hsla(235, 0%, 48%, 0.03) 43%,
@@ -32,3 +32,4 @@ a {
 		padding: 0 10px;
 	}
 }
+

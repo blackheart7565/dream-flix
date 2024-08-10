@@ -36,6 +36,7 @@
 				padding-left: 25px;
 				line-height: 1.2rem;
 				text-align: start;
+				font-weight: 500;
 				transition: background-color, 0.3s ease-in-out, color 0.3s ease-in-out;
 
 				@media (hover: hover) {
@@ -59,12 +60,6 @@
 				gap: 5px;
 				height: auto;
 				line-height: 1.2rem;
-
-				// .arrow {
-				// 	display: inline-block;
-				// 	width: 25px;
-				// 	height: 25px;
-				// }
 			}
 
 			.submenuNav {
