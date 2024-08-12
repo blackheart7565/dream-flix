@@ -22,4 +22,7 @@ export const mediaConfig = {
 		films: "films",
 		serials: "serials",
 	},
+	poster_path: (imgEndpoint: string | undefined): string => `https://image.tmdb.org/t/p/original${imgEndpoint}`,
+	backdrop_path: (imgEndpoint: string | undefined): string => `https://image.tmdb.org/t/p/w5${imgEndpoint}`,
+	youtube_path: (imgEndpoint: string | undefined): string => `https://www.youtube.com/embed/${imgEndpoint}`,
 } as const;
