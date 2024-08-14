@@ -1,20 +1,27 @@
 @font-face {
-	font-family: 'Roboto';
-	src: url('../assets/fonts/Roboto-400.ttf') format('truetype');
+	font-family: "Inter";
+	src: url("../assets/fonts/Inter_400.ttf") format("truetype");
 	font-style: normal;
 	font-weight: 400;
 }
 
 @font-face {
-	font-family: 'Roboto';
-	src: url('../assets/fonts/Roboto-500.ttf') format('truetype');
+	font-family: "Inter";
+	src: url("../assets/fonts/Inter_500.ttf") format("truetype");
 	font-style: normal;
 	font-weight: 500;
 }
 
 @font-face {
-	font-family: 'Roboto';
-	src: url('../assets/fonts/Roboto-700.ttf') format('truetype');
+	font-family: "Inter";
+	src: url("../assets/fonts/Inter_600.ttf") format("truetype");
+	font-style: normal;
+	font-weight: 600;
+}
+
+@font-face {
+	font-family: "Inter";
+	src: url("../assets/fonts/Inter_700.ttf") format("truetype");
 	font-style: normal;
 	font-weight: 700;
 }

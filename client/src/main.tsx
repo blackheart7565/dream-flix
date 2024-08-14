@@ -7,7 +7,6 @@ import { RootRoutes } from "./components/layouts/RootRoutes";
 import store from "./store/store";
 
 import "./styles/reset.css";
-import "./styles/importFonts.css";
 import './styles/index.css';
 import './styles/global.css';
 
